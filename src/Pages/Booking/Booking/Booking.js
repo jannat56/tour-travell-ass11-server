@@ -15,7 +15,7 @@ const Booking = () => {
     }, [])
     return (
         <div>
-            <h2>booking: {service.name}</h2>
+            <h2>Booking: {service.name}</h2>
             <p>{service.description}</p>
             <h2>$ {service.Amount}</h2>
             {/* <h3>{serviceId}</h3> */}

@@ -4,14 +4,18 @@ import { Link } from 'react-router-dom';
 // import useAuth from '../../../hooks/useAuth';
 import { HashLink } from 'react-router-hash-link';
 import useFirebase from '../../../hooks/useFirebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlane } from '@fortawesome/free-solid-svg-icons'
+
 
 const Header = () => {
+    const element = <FontAwesomeIcon icon={faPlane} />
     const {  user, logOut } = useFirebase();
     return (
         <>
             <Navbar bg="dark" variant="dark" sticky="top" collapseOnSelect expand="lg" >
                 <Container>
-                    <Navbar.Brand href="#home">Tales of Time Travel</Navbar.Brand>
+                    <Navbar.Brand href="#home">Tales of Time Travel {element}</Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Nav.Link as={HashLink} to="/home#home">Home</Nav.Link>

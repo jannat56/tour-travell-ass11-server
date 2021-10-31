@@ -5,6 +5,10 @@
     margin: 40px;
 }
 
+.service-bg {
+    background-color: rgb(211, 179, 184);
+}
+
 /* make responsive  */
 @media only screen and (max-width:688px) {
     .service-container {

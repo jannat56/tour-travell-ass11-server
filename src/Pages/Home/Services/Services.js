@@ -15,7 +15,7 @@ const Services = () => {
     },[])
     return (
        <div>
-           <h2 className="mt-4 p-4 m-4 facility-bg w-80 expert-card"id="services">Our Services</h2>
+          <h2 className="mt-4 p-4 m-4 service-bg text-dark w-80" id="services">Our Services</h2>
            <h3>Visit Your Dream Country</h3>
             <div className="service-container">
           {

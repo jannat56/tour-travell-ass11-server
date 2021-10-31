@@ -55,6 +55,7 @@ function App() {
         <Footer></Footer>
      </BrowserRouter>
      </AuthProvider>
+    
     </div>
   );
 }
