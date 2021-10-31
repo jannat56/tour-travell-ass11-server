@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <section>
             <div className="mt-4 bg-primary text-white p-4">
-           <h5>BestTravell Agency || Dream Travell</h5>
+           <h5>BestTravell Agency || Dream Travell || Tales of Time Travel</h5>
            <p>Home  | About | Services | Facilities | Login | Orders</p>
            <p>copyright@2021 | Travell Agency | Happy Tour </p>
            

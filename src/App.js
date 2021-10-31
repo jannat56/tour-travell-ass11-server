@@ -11,6 +11,8 @@ import Login from './Pages/Login/Login/Login';
 import AddService from './Pages/AddService/AddService';
 import Booking from './Pages/Booking/Booking/Booking';
 import ManageServices from './Pages/ManageServices/ManageServices';
+import NotFound from './Pages/NotFound/NotFound';
+import MyOrders from './Pages/MyOrders/MyOrders';
 
 
 
@@ -37,11 +39,17 @@ function App() {
         <PrivateRoute path="/addServices">
          <AddService></AddService>
           </PrivateRoute>
-          <PrivateRoute path="/manageservices">
+          <PrivateRoute path="/manageOrders">
              <ManageServices></ManageServices>
+            </PrivateRoute>
+          <PrivateRoute path="/myOrders">
+           <MyOrders></MyOrders>
             </PrivateRoute>
         <Route path="/login">
          <Login></Login>
+          </Route>
+        <Route path="*">
+        <NotFound></NotFound>
           </Route>
     </Switch>
         <Footer></Footer>
