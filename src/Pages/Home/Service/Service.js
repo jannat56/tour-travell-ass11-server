@@ -13,7 +13,7 @@ const Service = ({service}) => {
             src={img}/>
            <div className="pt-4">
            <h5 className="text-primary">Service Title: {name}</h5>
-            <h5>Amount: {Amount}</h5>
+            <h5>Amount: $ {Amount}</h5>
             <h6 className="text-primary">Time: {time}</h6>
             <p>description: {description}</p>
            </div>

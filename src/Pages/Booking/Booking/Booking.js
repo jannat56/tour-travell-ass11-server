@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
+
 const Booking = () => {
     const { serviceId } = useParams();
     const [service, setService] = useState({});
@@ -14,8 +15,14 @@ const Booking = () => {
     }, [])
     return (
         <div>
-            <h2>this is booking: {service.name}
-            {serviceId}</h2>
+            <h2>booking: {service.name}</h2>
+            <p>{service.description}</p>
+            <h2>$ {service.Amount}</h2>
+            {/* <h3>{serviceId}</h3> */}
+            <img style={{height:"300px", width:"300px"}}src={service.img}></img>
+          
+
+
         </div>
     );
 };
