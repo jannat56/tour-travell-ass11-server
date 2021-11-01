@@ -48,9 +48,9 @@ const ManageOrders = () => {
 						<li key={order._id}>
 							{order.name} :: {order.email} :: phone:{' '}
 							{order.phone}
-							<Link to={`/users/update/${order._id}`}>
+							{/* <Link to={`/users/update/${order._id}`}>
 								<button>update</button>
-							</Link>
+							</Link> */}
 							<button
 								onClick={() => handleDeleteOrder(order._id)}
 							>

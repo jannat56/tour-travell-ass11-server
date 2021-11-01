@@ -43,14 +43,27 @@ const Booking = () => {
 				alt='service'
 				src={service.img}
 			></img>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form
+				className='mt-4 bg-dark p-4'
+				onSubmit={handleSubmit(onSubmit)}
+			>
 				<input {...register('name')} placeholder='name' />
+				<br />
+				<br />
 				<input
 					type='number'
 					{...register('phone')}
 					placeholder='Phone Number'
 				/>
-				<input type='email' {...register('email')} />
+				<br />
+				<br />
+				<input
+					type='email'
+					{...register('email')}
+					placeholder='email'
+				/>
+				<br />
+				<br />
 				<input className='btn btn-info' type='submit' />
 			</form>
 		</div>
