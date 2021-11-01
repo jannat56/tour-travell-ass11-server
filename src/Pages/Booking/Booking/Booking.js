@@ -1,30 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-
+// import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import useFirebase from '../../../hooks/useFirebase';
 
 const Booking = () => {
-    const { serviceId } = useParams();
-    const [service, setService] = useState({});
+	// const { register, handleSubmit, reset} = useForm();
+	const { serviceId } = useParams();
+	const [service, setService] = useState({});
+	const { user } = useFirebase();
 
-    useEffect(()=>{
-        fetch(`https://tranquil-sierra-50909.herokuapp.com/services/${serviceId}`)
-        .then(res => res.json())
-        .then(data=> setService(data));
+	const { register, handleSubmit, reset } = useForm();
 
-        
-    }, [])
-    return (
-        <div>
-            <h2>Booking: {service.name}</h2>
-            <p>{service.description}</p>
-            <h2>$ {service.Amount}</h2>
-            {/* <h3>{serviceId}</h3> */}
-            <img style={{height:"300px", width:"300px"}}src={service.img}></img>
-          
+	const onSubmit = (data) => {
+		data.user_id = user.uid;
+		console.log(data);
+		axios.post('http://localhost:5000/orders', data).then((res) => {
+			if (res.data.insertedId) {
+				alert('ordered successfully');
+				reset();
+			}
+		});
+	};
 
-
-        </div>
-    );
+	useEffect(() => {
+		fetch(
+			`https://tranquil-sierra-50909.herokuapp.com/services/${serviceId}`
+		)
+			.then((res) => res.json())
+			.then((data) => setService(data));
+	}, []);
+	return (
+		<div>
+			<h2>Booking: {service.name}</h2>
+			<p>{service.description}</p>
+			<h2>$ {service.Amount}</h2>
+			{/* <h3>{serviceId}</h3> */}
+			<img
+				style={{ height: '300px', width: '300px' }}
+				alt='service'
+				src={service.img}
+			></img>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<input {...register('name')} placeholder='name' />
+				<input
+					type='number'
+					{...register('phone')}
+					placeholder='Phone Number'
+				/>
+				<input type='email' {...register('email')} />
+				<input className='btn btn-info' type='submit' />
+			</form>
+		</div>
+	);
 };
 
 export default Booking;

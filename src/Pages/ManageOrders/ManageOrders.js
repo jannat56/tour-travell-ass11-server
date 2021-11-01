@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFirebase from '../../hooks/useFirebase';
 
-const MyOrders = () => {
-	const [orders, setOrders] = useState([]);
+const ManageOrders = () => {
+	const [allOrders, setAllOrders] = useState([]);
 	const { user } = useFirebase();
 	useEffect(() => {
-		console.log(user);
 		if (user.email) {
-			fetch(
-				`https://tranquil-sierra-50909.herokuapp.com/order/${user.uid}`
-			)
+			fetch('https://tranquil-sierra-50909.herokuapp.com/orders')
 				.then((res) => res.json())
 				.then((data) => {
 					console.log(data);
-					setOrders(data);
+					setAllOrders(data);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -23,7 +20,7 @@ const MyOrders = () => {
 	}, [user]);
 
 	// delete an user
-	const handleDeleteUser = (id) => {
+	const handleDeleteOrder = (id) => {
 		const proceed = window.confirm('are u sure');
 		if (proceed) {
 			const url = `https://tranquil-sierra-50909.herokuapp.com/order/${id}`;
@@ -34,27 +31,29 @@ const MyOrders = () => {
 				.then((data) => {
 					if (data.deletedCount > 0) {
 						alert('delete successfully');
-						const remainingUsers = orders.filter(
-							(user) => user._id !== id
+						const remainingUsers = allOrders.filter(
+							(order) => order._id !== id
 						);
-						setOrders(remainingUsers);
+						setAllOrders(remainingUsers);
 					}
 				});
 		}
 	};
 	return (
 		<div>
-			<h2>My Orders : {orders.length}</h2>
+			<h2>Orders : {allOrders.length}</h2>
 			<ul>
-				{orders &&
-					orders.map((order) => (
+				{allOrders &&
+					allOrders.map((order) => (
 						<li key={order._id}>
 							{order.name} :: {order.email} :: phone:{' '}
 							{order.phone}
 							<Link to={`/users/update/${order._id}`}>
 								<button>update</button>
 							</Link>
-							<button onClick={() => handleDeleteUser(order._id)}>
+							<button
+								onClick={() => handleDeleteOrder(order._id)}
+							>
 								X
 							</button>
 						</li>
@@ -64,4 +63,4 @@ const MyOrders = () => {
 	);
 };
 
-export default MyOrders;
+export default ManageOrders;
