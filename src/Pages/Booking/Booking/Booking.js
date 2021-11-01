@@ -17,12 +17,14 @@ const Booking = () => {
 	const onSubmit = (data) => {
 		data.user_id = user.uid;
 		console.log(data);
-		axios.post('http://localhost:5000/orders', data).then((res) => {
-			if (res.data.insertedId) {
-				alert('ordered successfully');
-				reset();
-			}
-		});
+		axios
+			.post('https://tranquil-sierra-50909.herokuapp.com/orders', data)
+			.then((res) => {
+				if (res.data.insertedId) {
+					alert('ordered successfully');
+					reset();
+				}
+			});
 	};
 
 	useEffect(() => {
